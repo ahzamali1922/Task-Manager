@@ -1,4 +1,6 @@
 from django.db import models
+# connecting user and tasks table
+from django.conf import settings
 # Create your models here.
 
 # task table
@@ -27,6 +29,13 @@ class Task(models.Model):
         ('others','OTHERS'),
     ]
     category = models.CharField(max_length= 20, choices= CATEGORY_CHOICES, default= 'others')
+    # foreign key users -- task
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete= models.CASCADE,
+        null = True,
+        blank = True,
+    )
 
     def __str__(self):
         return self.title
