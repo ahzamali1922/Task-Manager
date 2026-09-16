@@ -1,687 +1,267 @@
-============================================================
-              TASK MANAGER - DJANGO ROADMAP
-============================================================
-
-PROJECT GOAL:
-Build a complete Task Manager using Django while learning
-the important Django concepts step by step.
-
-============================================================
-CURRENT PROGRESS
-============================================================
-
-[✓] 1. Django Project & App Structure
-[✓] 2. Database & Models
-[✓] 3. Model Relationships
-[✓] 4. Custom User Model
-[✓] 5. Django Admin Panel
-
-[ ] 6. URL Routing
-[ ] 7. Views
-[ ] 8. Templates
-[ ] 9. Django ORM / Queries
-[ ] 10. CRUD Operations
-[ ] 11. Forms & ModelForms
-[ ] 12. User Authentication
-[ ] 13. User-Specific Tasks
-[ ] 14. Permissions & Security
-[ ] 15. Django Messages
-[ ] 16. Static Files (CSS/JS)
-[ ] 17. Task Manager Features
-[ ] 18. Testing
-[ ] 19. Deployment
-
-
-============================================================
-1. DJANGO PROJECT & APP STRUCTURE ✓
-============================================================
-
-Learn:
-- What a Django project is
-- What a Django app is
-- manage.py
-- settings.py
-- apps.py
-- project vs app
-
-Project structure:
-
-    config/       -> project configuration
-    accounts/     -> user-related functionality
-    task/         -> task-related functionality
-    manage.py     -> Django command-line utility
-
-Goal:
-Understand how Django projects and apps are organized.
-
-
-============================================================
-2. DATABASE & MODELS ✓
-============================================================
-
-Learn:
-- Django models
-- Database tables
-- Model fields
-- CharField
-- TextField
-- BooleanField
-- DateTimeField
-- default
-- null
-- blank
-- choices
-- auto_now
-- auto_now_add
-
-Your main models:
-
-    Task
-    Category
-
-Goal:
-Learn how Python classes are converted into database tables.
-
-
-============================================================
-3. MODEL RELATIONSHIPS ✓
-============================================================
-
-Learn:
-- ForeignKey
-- One-to-many relationships
-- on_delete
-- CASCADE
-- Connecting models together
-
-Example:
-
-    User
-      |
-      +---- Task
-      +---- Task
-      +---- Task
-
-Goal:
-Understand how users and their tasks are connected.
-
-
-============================================================
-4. CUSTOM USER MODEL ✓
-============================================================
-
-Learn:
-- Django's User model
-- AbstractUser
-- Custom user model
-- AUTH_USER_MODEL
-- Why a custom user model is useful
-
-Current setup:
-
-    CustomUser(AbstractUser)
-
-Goal:
-Have your own user model ready for authentication.
-
-NOTE:
-Custom User Model is DONE.
-Authentication itself comes later.
-
-
-============================================================
-5. DJANGO ADMIN PANEL ✓
-============================================================
-
-Learn:
-- Django Admin
-- Registering models
-- ModelAdmin
-- list_display
-- list_filter
-- search_fields
-- ordering
-
-Admin should allow you to manage:
-
-    Users
-    Tasks
-    Categories
-
-Goal:
-Understand Django's built-in administration interface.
-
-
-============================================================
-6. URL ROUTING
-============================================================
-
-Learn:
-- urls.py
-- path()
-- include()
-- URL parameters
-- URL names
-- namespace
-- Connecting URLs to views
-
-Example:
-
-    /tasks/
-       |
-       v
-    task_list()
-
-Goal:
-Understand how Django decides which view should handle
-a browser request.
-
-Flow:
-
-    Browser
-       ↓
-    URL
-       ↓
-    urls.py
-       ↓
-    View
-
-
-============================================================
-7. VIEWS
-============================================================
-
-Learn:
-- Django views
-- request object
-- GET requests
-- POST requests
-- render()
-- redirect()
-- HttpResponse()
-- Passing data to templates
-
-Example:
-
-    def task_list(request):
-        tasks = Task.objects.all()
-        return render(
-            request,
-            'task/task_list.html',
-            {'tasks': tasks}
-        )
-
-Goal:
-Learn how Django processes requests and creates responses.
-
-
-============================================================
-8. TEMPLATES
-============================================================
-
-Learn:
-- Django templates
-- Template variables
-- for loops
-- if statements
-- template filters
-- extends
-- blocks
-- url template tag
-
-Example:
-
-    {{ task.title }}
-
-    {% for task in tasks %}
-        {{ task.title }}
-    {% endfor %}
-
-Learn template inheritance:
-
-    base.html
-       |
-       +-- task_list.html
-       +-- task_detail.html
-       +-- task_form.html
-
-Goal:
-Display dynamic database data on HTML pages.
-
-
-============================================================
-9. DJANGO ORM / DATABASE QUERIES
-============================================================
-
-Learn how to interact with the database using Python
-instead of writing SQL directly.
-
-Important queries:
-
-    Task.objects.all()
-
-    Task.objects.filter(...)
-
-    Task.objects.get(...)
-
-    Task.objects.create(...)
-
-    Task.objects.update(...)
-
-    Task.objects.delete(...)
-
-Also learn:
-
-- QuerySets
-- filtering
-- ordering
-- relationships
-- get_object_or_404()
-
-Goal:
-Be comfortable reading, creating, updating and deleting
-database objects using Django ORM.
-
-
-============================================================
-10. CRUD OPERATIONS
-============================================================
-
-CRUD = Create, Read, Update, Delete
-
-CREATE:
-    Create a new task.
-
-READ:
-    Display tasks.
-
-UPDATE:
-    Edit an existing task.
-
-DELETE:
-    Remove a task.
-
-Pages/features:
-
-    Task List
-    Task Detail
-    Create Task
-    Edit Task
-    Delete Task
-
-Goal:
-Build the core functionality of the Task Manager.
-
-Flow:
-
-    URL
-     ↓
-    View
-     ↓
-    ORM
-     ↓
-    Database
-     ↓
-    Template
-     ↓
-    Browser
-
-
-============================================================
-11. FORMS & MODEL FORMS
-============================================================
-
-Learn:
-- forms.py
-- Django Form
-- ModelForm
-- form fields
-- validation
-- is_valid()
-- cleaned_data
-- POST handling
-- CSRF protection
-
-Use ModelForm for Task creation/editing.
-
-Example concept:
-
-    Task
-      ↓
-    ModelForm
-      ↓
-    HTML Form
-      ↓
-    User submits
-      ↓
-    Validation
-      ↓
-    Database
-
-Goal:
-Learn the proper Django way of handling user input.
-
-
-============================================================
-12. USER AUTHENTICATION
-============================================================
-
-Learn:
-- Registration
-- Login
-- Logout
-- authenticate()
-- login()
-- logout()
-- request.user
-- is_authenticated
-- @login_required
-- Password handling
-
-Pages:
-
-    Register
-    Login
-    Logout
-
-Flow:
-
-    Register
-       ↓
-    Login
-       ↓
-    Task Manager
-       ↓
-    Logout
-
-Goal:
-Allow users to create accounts and securely log in.
-
-
-============================================================
-13. USER-SPECIFIC TASKS
-============================================================
-
-Connect authentication with your Task model.
-
-Each task belongs to a user.
-
-Example:
-
-    Alice
-      ├── Task A
-      ├── Task B
-      └── Task C
-
-    Bob
-      ├── Task D
-      └── Task E
-
-Alice should only see Alice's tasks.
-Bob should only see Bob's tasks.
-
-Learn:
-
-    request.user
-
-    Task.objects.filter(user=request.user)
-
-Goal:
-Build a real multi-user Task Manager.
-
-
-============================================================
-14. PERMISSIONS & SECURITY
-============================================================
-
-Learn:
-- Authentication vs authorization
-- Login protection
-- Object ownership
-- Preventing users from accessing other users' tasks
-- CSRF
-- Basic Django security practices
-
-Example:
-
-User should NOT be able to edit:
-
-    /tasks/25/
-
-if Task #25 belongs to another user.
-
-Goal:
-Make sure users can only access and modify
-what they are allowed to.
-
-
-============================================================
-15. DJANGO MESSAGES
-============================================================
-
-Learn Django's messages framework.
-
-Examples:
-
-    Task created successfully!
-
-    Task updated successfully!
-
-    Task deleted successfully!
-
-Learn:
-
-    messages.success()
-    messages.error()
-    messages.warning()
-    messages.info()
-
-Goal:
-Give users feedback after actions.
-
-
-============================================================
-16. STATIC FILES (CSS / JAVASCRIPT)
-============================================================
-
-Learn:
-- static/
-- {% load static %}
-- STATIC_URL
-- CSS
-- JavaScript
-- Organizing frontend files
-
-Goal:
-Turn the basic Django pages into a proper web application.
-
-
-============================================================
-17. TASK MANAGER FEATURES
-============================================================
-
-After the Django fundamentals work, add useful features.
-
-Possible features:
-
-    - Task search
-    - Filter by completion
-    - Filter by priority
-    - Filter by category
-    - Sort by due date
-    - Task detail page
+TASK MANAGER - DJANGO BASICS
+=============================
+
+COMPLETED
+----------
+✓ Django project & app structure
+✓ Settings & configuration
+✓ Database / Models
+✓ Model relationships
+✓ Custom User Model
+✓ Django Admin Panel
+
+
+CURRENT LEARNING ROADMAP
+------------------------
+
+1. USER AUTHENTICATION 🔐
+   Learn:
+   - User registration   #Done
+   - Login
+   - Logout
+   - authenticate()
+   - login()
+   - logout()
+   - request.user
+   - is_authenticated
+   - @login_required
+   - Password handling
+
+   Goal:
+   Build a working account system where users can
+   register, login and logout.
+
+
+2. USER-SPECIFIC TASKS 👤
+   Learn:
+   - request.user
+   - Connecting Task to the logged-in user
+   - Filtering tasks by user
+   - Creating tasks for the current user
+
+   Example:
+       Task.objects.filter(user=request.user)
+
+   Goal:
+   Each user sees and manages only their own tasks.
+
+
+3. CRUD OPERATIONS 📝
+   Learn:
+   - CREATE
+   - READ
+   - UPDATE
+   - DELETE
+   - ORM queries
+   - Views
+   - URLs
+   - Templates
+   - Redirects
+
+   Build:
+       Task List
+       Task Detail
+       Create Task
+       Edit Task
+       Delete Task
+
+   Goal:
+   Build the core Task Manager functionality.
+
+
+4. PERMISSIONS & SECURITY 🛡️
+   Learn:
+   - Authentication vs Authorization
+   - @login_required
+   - Object ownership
+   - Preventing access to other users' tasks
+   - CSRF
+   - Basic Django security
+
+   Goal:
+   Make sure users can only access and modify
+   resources they are allowed to use.
+
+
+5. FORMS & MODEL FORMS 📋
+   Learn:
+   - forms.py
+   - Form
+   - ModelForm
+   - Form validation
+   - is_valid()
+   - cleaned_data
+   - GET vs POST
+   - CSRF protection
+
+   Goal:
+   Handle user input properly using Django forms.
+
+
+6. URL ROUTING 🔗
+   Learn:
+   - urls.py
+   - path()
+   - include()
+   - URL parameters
+   - URL names
+   - namespaces
+   - {% url %}
+
+   Goal:
+   Understand how URLs connect the browser to Django views.
+
+
+7. VIEWS ⚙️
+   Learn:
+   - request
+   - render()
+   - redirect()
+   - HttpResponse()
+   - GET / POST
+   - Passing context to templates
+
+   Goal:
+   Understand how Django handles requests and
+   generates responses.
+
+
+8. TEMPLATES 🎨
+   Learn:
+   - Template variables
+   - for loops
+   - if statements
+   - Template filters
+   - extends
+   - blocks
+   - Template inheritance
+
+   Goal:
+   Display dynamic database information in HTML.
+
+
+9. DJANGO MESSAGES 💬
+   Learn:
+   - messages.success()
+   - messages.error()
+   - messages.warning()
+   - messages.info()
+
+   Goal:
+   Give users feedback after actions.
+
+
+10. STATIC FILES 🎨
+    Learn:
+    - static/
+    - CSS
+    - JavaScript
+    - {% load static %}
+    - STATIC_URL
+
+    Goal:
+    Style and improve the frontend.
+
+
+11. TASK MANAGER FEATURES 🚀
+    Add features such as:
+    - Search
+    - Filtering
+    - Sorting
+    - Categories
+    - Priority filtering
+    - Due dates
     - Pagination
-    - Overdue tasks
     - Dashboard
-    - Task statistics
+    - Statistics
 
-Goal:
-Make the project feel like a real Task Manager.
-
-IMPORTANT:
-These are application features.
-Do not focus on these before understanding the
-core Django concepts above.
+    Goal:
+    Turn the basic CRUD application into a useful
+    real-world Task Manager.
 
 
-============================================================
-18. TESTING
-============================================================
+12. TESTING 🧪
+    Learn:
+    - TestCase
+    - Model tests
+    - View tests
+    - Form tests
+    - Authentication tests
+    - Permission tests
 
-Learn:
-- Django TestCase
-- Testing models
-- Testing views
-- Testing forms
-- Testing authentication
-- Testing permissions
-
-Examples:
-
-    Can a user create a task?
-
-    Can a user edit their task?
-
-    Can a user delete their task?
-
-    Can Alice see Bob's task?
-
-    Can a logged-out user access the task manager?
-
-Goal:
-Make sure your application actually works correctly.
+    Goal:
+    Make sure the application works correctly
+    and securely.
 
 
-============================================================
-19. DEPLOYMENT
-============================================================
+13. DEPLOYMENT 🌍
+    Learn:
+    - DEBUG=False
+    - ALLOWED_HOSTS
+    - Environment variables
+    - Production database
+    - Static files
+    - WSGI / ASGI
+    - Deployment
+    - Production security
 
-Learn how to move the project from development
-to production.
-
-Learn:
-- DEBUG=False
-- ALLOWED_HOSTS
-- Environment variables
-- Production database
-- Static files
-- WSGI / ASGI
-- Production security settings
-- Hosting/deployment
-
-Goal:
-Make the Task Manager accessible online.
+    Goal:
+    Deploy the Task Manager so it can be accessed online.
 
 
-============================================================
-FINAL PROJECT FLOW
-============================================================
-
-                    USER
-                     |
-                     v
-              Registration/Login
-                     |
-                     v
-                   URL
-                     |
-                     v
-                  VIEW
-                     |
-          +----------+----------+
-          |                     |
-          v                     v
-        FORMS                  ORM
-          |                     |
-          |                     v
-          |                  DATABASE
-          |                     |
-          +----------+----------+
-                     |
-                     v
-                 TEMPLATE
-                     |
-                     v
-                  HTML
-                     |
-                     v
-                  USER
-
-
-============================================================
-DJANGO LEARNING CHECKPOINTS
-============================================================
-
-FOUNDATION:
-    ✓ Project
-    ✓ Apps
-    ✓ Settings
-    ✓ Models
-    ✓ Relationships
-    ✓ Custom User
-    ✓ Admin
-
-BACKEND:
-    → URLs
-    → Views
-    → ORM
-    → CRUD
-
-FRONTEND:
-    → Templates
-    → Forms
-    → Static files
-
-AUTHENTICATION:
-    → Registration
-    → Login
-    → Logout
-    → request.user
-    → Permissions
-    → User-specific data
-
-ADVANCED BASICS:
-    → Messages
-    → Pagination
-    → Testing
-    → Deployment
-
-
-============================================================
-CURRENT NEXT STEP
-============================================================
-
-DO NOT jump ahead.
+IMPORTANT LEARNING ORDER
+------------------------
 
 Start with:
 
-    6. URL ROUTING
+    1. User Authentication
            ↓
-    7. VIEWS
+    2. User-Specific Tasks
            ↓
-    8. TEMPLATES
+    3. CRUD Operations
            ↓
-    9. ORM / QUERIES
+    4. Permissions & Security
            ↓
-    10. CRUD
+    5. Forms / ModelForms
+           ↓
+    6. URL Routing
+           ↓
+    7. Views
+           ↓
+    8. Templates
+           ↓
+    9. Messages
+           ↓
+    10. Static Files
+           ↓
+    11. Extra Features
+           ↓
+    12. Testing
+           ↓
+    13. Deployment
 
 
-The immediate goal is:
+IMPORTANT:
+----------
 
-    Browser
-       ↓
-    /tasks/
-       ↓
-    URL
-       ↓
-    View
-       ↓
-    Task.objects...
-       ↓
-    Template
-       ↓
-    Display Tasks
+Do NOT just copy complete solutions.
 
+For every feature:
 
-After that, move to Forms + Authentication.
-============================================================
+1. Understand the Django concept.
+2. Implement it yourself.
+3. Test it.
+4. Fix errors.
+5. Only then move to the next topic.
+
+The purpose of this project is to LEARN DJANGO,
+not just to finish a Task Manager.
+
+CURRENT STEP:
+-------------
+
+🔐 USER AUTHENTICATION
+
+Next goal:
+
+    Register → Login → Access Task Manager → Logout
