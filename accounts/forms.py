@@ -1,5 +1,6 @@
 from django import forms
 from .models import CustomUser
+from django.contrib.auth.forms import AuthenticationForm
 
 
 class RegistrationForm(forms.ModelForm):
@@ -56,3 +57,7 @@ class RegistrationForm(forms.ModelForm):
         return user
 
 
+# Creating a Login form
+
+class LoginForm(AuthenticationForm):
+    pass
